@@ -1,0 +1,11 @@
+framework module tflite_flutter_helper {
+  umbrella header "tflite_flutter_helper-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module tflite_flutter_helper.Swift {
+    header "tflite_flutter_helper-Swift.h"
+    requires objc
+}

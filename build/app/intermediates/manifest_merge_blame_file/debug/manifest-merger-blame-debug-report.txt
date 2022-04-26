@@ -32,7 +32,7 @@
 25        android:name="io.flutter.embedding.app.FlutterApplication"
 25-->/Users/okumura/Documents/PIS/BingBong/android/app/src/main/AndroidManifest.xml:9:9-67
 26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-26-->[androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f90299ff420036e311b84c728802cd71/core-1.6.0/AndroidManifest.xml:24:18-86
+26-->[androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/ef88d03f6e9909ac0b16eefad4ad9b0b/core-1.6.0/AndroidManifest.xml:24:18-86
 27        android:debuggable="true"
 28        android:icon="@mipmap/ic_launcher"
 28-->/Users/okumura/Documents/PIS/BingBong/android/app/src/main/AndroidManifest.xml:11:9-43
@@ -102,17 +102,17 @@
 70-->/Users/okumura/Documents/PIS/BingBong/android/app/src/main/AndroidManifest.xml:45:13-30
 71
 72        <uses-library
-72-->[androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+72-->[androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
 73            android:name="androidx.window.extensions"
-73-->[androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+73-->[androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
 74            android:required="false" />
-74-->[androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+74-->[androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
 75        <uses-library
-75-->[androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+75-->[androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
 76            android:name="androidx.window.sidecar"
-76-->[androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+76-->[androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
 77            android:required="false" />
-77-->[androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+77-->[androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
 78    </application>
 79
 80</manifest>

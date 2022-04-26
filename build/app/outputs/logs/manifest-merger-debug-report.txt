@@ -10,23 +10,23 @@ MERGED from [:camera] /Users/okumura/Documents/PIS/BingBong/build/camera/interme
 MERGED from [:flutter_plugin_android_lifecycle] /Users/okumura/Documents/PIS/BingBong/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider_android] /Users/okumura/Documents/PIS/BingBong/build/path_provider_android/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:tflite_flutter] /Users/okumura/Documents/PIS/BingBong/build/tflite_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/0324281bdf3b28e2968255adec6aa2ed/window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
-MERGED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:17:1-33:12
-MERGED from [androidx.fragment:fragment:1.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/0986d0d74b8a2c7da8161f6370fc7744/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/28d99d5113324aa067757f8ca41a426f/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/e1bbce6b0d79e8479b70e7bd729bb743/loader-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.activity:activity:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/615cab8ad6393a9c868d48761bbea666/activity-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.customview:customview:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/ef0bef029ab70f5fb29de019060cf5fd/customview-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f90299ff420036e311b84c728802cd71/core-1.6.0/AndroidManifest.xml:17:1-26:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/49ede1f7b9aa322a43288e9745adc2db/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/54d8b8735f730e83f07925f758092af3/savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/23edc849475fdda61367cb003f9b9f93/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/79f9d65ef8b1c716310f666473a689a7/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.tracing:tracing:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d606eb34fbe4f818c2c6052896a24d12/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/077300052aa327ee6fc9bbb0ce309b24/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/okumura/.gradle/caches/transforms-2/files-2.1/94c726e196feb64bbc6cc40dd33b803e/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/b80fad55c42c418cc210e235056767fb/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/9709cb8dd8293ed6d41d2611e485b090/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/5ebc053f2a787b787833a40d78dee70e/window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/e26103ff7d7245cbdaa27ac13c8265d0/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/5fad22cf257866fbba70bb1610d0b305/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f8b29db4abc67c3c0963f8b86f4ef1d8/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/4e600850c21cfb738c3943e634458d5c/activity-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/62ad8f934aa2e683019d7be84f55ad5f/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/ef88d03f6e9909ac0b16eefad4ad9b0b/core-1.6.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/e778de4c5e9715aafc72d95573f8c8a4/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/937c2e96f57a53b6b177f8a457e609bc/savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/6ae40786d14b99e9bdc157c0fddcf054/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/b049fcde91a467fac5174837ce7f9bea/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/3249401ddbc29c06b70e2eaf78caffcb/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/da40a10bb574f9325b805980a9ea340f/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/okumura/.gradle/caches/transforms-2/files-2.1/12db83d010fb65e6971555d3b8c3dd3b/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/419efbe16125a8b77dd21baf3a980315/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/78f23075a032ba458e5d4be8b9cae206/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
 INJECTED from /Users/okumura/Documents/PIS/BingBong/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 INJECTED from /Users/okumura/Documents/PIS/BingBong/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 INJECTED from /Users/okumura/Documents/PIS/BingBong/android/app/src/debug/AndroidManifest.xml:1:1-7:12
@@ -46,14 +46,14 @@ INJECTED from /Users/okumura/Documents/PIS/BingBong/android/app/src/debug/Androi
 		ADDED from /Users/okumura/Documents/PIS/BingBong/android/app/src/main/AndroidManifest.xml:1:11-69
 application
 ADDED from /Users/okumura/Documents/PIS/BingBong/android/app/src/main/AndroidManifest.xml:8:5-46:19
-MERGED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
-MERGED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
-MERGED from [androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f90299ff420036e311b84c728802cd71/core-1.6.0/AndroidManifest.xml:24:5-89
-MERGED from [androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f90299ff420036e311b84c728802cd71/core-1.6.0/AndroidManifest.xml:24:5-89
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/okumura/.gradle/caches/transforms-2/files-2.1/94c726e196feb64bbc6cc40dd33b803e/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/okumura/.gradle/caches/transforms-2/files-2.1/94c726e196feb64bbc6cc40dd33b803e/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/ef88d03f6e9909ac0b16eefad4ad9b0b/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/ef88d03f6e9909ac0b16eefad4ad9b0b/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/okumura/.gradle/caches/transforms-2/files-2.1/12db83d010fb65e6971555d3b8c3dd3b/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/okumura/.gradle/caches/transforms-2/files-2.1/12db83d010fb65e6971555d3b8c3dd3b/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f90299ff420036e311b84c728802cd71/core-1.6.0/AndroidManifest.xml:24:18-86
+		ADDED from [androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/ef88d03f6e9909ac0b16eefad4ad9b0b/core-1.6.0/AndroidManifest.xml:24:18-86
 	android:label
 		ADDED from /Users/okumura/Documents/PIS/BingBong/android/app/src/main/AndroidManifest.xml:10:9-37
 	android:icon
@@ -116,40 +116,40 @@ MERGED from [:path_provider_android] /Users/okumura/Documents/PIS/BingBong/build
 MERGED from [:path_provider_android] /Users/okumura/Documents/PIS/BingBong/build/path_provider_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:tflite_flutter] /Users/okumura/Documents/PIS/BingBong/build/tflite_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:tflite_flutter] /Users/okumura/Documents/PIS/BingBong/build/tflite_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/0324281bdf3b28e2968255adec6aa2ed/window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
-MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/0324281bdf3b28e2968255adec6aa2ed/window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
-MERGED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/0986d0d74b8a2c7da8161f6370fc7744/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/0986d0d74b8a2c7da8161f6370fc7744/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/28d99d5113324aa067757f8ca41a426f/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/28d99d5113324aa067757f8ca41a426f/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/e1bbce6b0d79e8479b70e7bd729bb743/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/e1bbce6b0d79e8479b70e7bd729bb743/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/615cab8ad6393a9c868d48761bbea666/activity-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/615cab8ad6393a9c868d48761bbea666/activity-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.customview:customview:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/ef0bef029ab70f5fb29de019060cf5fd/customview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/ef0bef029ab70f5fb29de019060cf5fd/customview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f90299ff420036e311b84c728802cd71/core-1.6.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f90299ff420036e311b84c728802cd71/core-1.6.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/49ede1f7b9aa322a43288e9745adc2db/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/49ede1f7b9aa322a43288e9745adc2db/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/54d8b8735f730e83f07925f758092af3/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/54d8b8735f730e83f07925f758092af3/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/23edc849475fdda61367cb003f9b9f93/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/23edc849475fdda61367cb003f9b9f93/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/79f9d65ef8b1c716310f666473a689a7/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/79f9d65ef8b1c716310f666473a689a7/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.tracing:tracing:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d606eb34fbe4f818c2c6052896a24d12/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.tracing:tracing:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d606eb34fbe4f818c2c6052896a24d12/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/077300052aa327ee6fc9bbb0ce309b24/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/077300052aa327ee6fc9bbb0ce309b24/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/okumura/.gradle/caches/transforms-2/files-2.1/94c726e196feb64bbc6cc40dd33b803e/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/okumura/.gradle/caches/transforms-2/files-2.1/94c726e196feb64bbc6cc40dd33b803e/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/b80fad55c42c418cc210e235056767fb/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/b80fad55c42c418cc210e235056767fb/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/9709cb8dd8293ed6d41d2611e485b090/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/9709cb8dd8293ed6d41d2611e485b090/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/5ebc053f2a787b787833a40d78dee70e/window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/5ebc053f2a787b787833a40d78dee70e/window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/e26103ff7d7245cbdaa27ac13c8265d0/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/e26103ff7d7245cbdaa27ac13c8265d0/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/5fad22cf257866fbba70bb1610d0b305/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/5fad22cf257866fbba70bb1610d0b305/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f8b29db4abc67c3c0963f8b86f4ef1d8/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f8b29db4abc67c3c0963f8b86f4ef1d8/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/4e600850c21cfb738c3943e634458d5c/activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/4e600850c21cfb738c3943e634458d5c/activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/62ad8f934aa2e683019d7be84f55ad5f/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/62ad8f934aa2e683019d7be84f55ad5f/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/ef88d03f6e9909ac0b16eefad4ad9b0b/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/ef88d03f6e9909ac0b16eefad4ad9b0b/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/e778de4c5e9715aafc72d95573f8c8a4/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/e778de4c5e9715aafc72d95573f8c8a4/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/937c2e96f57a53b6b177f8a457e609bc/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/937c2e96f57a53b6b177f8a457e609bc/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/6ae40786d14b99e9bdc157c0fddcf054/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/6ae40786d14b99e9bdc157c0fddcf054/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/b049fcde91a467fac5174837ce7f9bea/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/b049fcde91a467fac5174837ce7f9bea/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/3249401ddbc29c06b70e2eaf78caffcb/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/3249401ddbc29c06b70e2eaf78caffcb/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/da40a10bb574f9325b805980a9ea340f/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/da40a10bb574f9325b805980a9ea340f/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/okumura/.gradle/caches/transforms-2/files-2.1/12db83d010fb65e6971555d3b8c3dd3b/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/okumura/.gradle/caches/transforms-2/files-2.1/12db83d010fb65e6971555d3b8c3dd3b/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/419efbe16125a8b77dd21baf3a980315/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/419efbe16125a8b77dd21baf3a980315/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/78f23075a032ba458e5d4be8b9cae206/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/okumura/.gradle/caches/transforms-2/files-2.1/78f23075a032ba458e5d4be8b9cae206/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
 INJECTED from /Users/okumura/Documents/PIS/BingBong/android/app/src/debug/AndroidManifest.xml
 INJECTED from /Users/okumura/Documents/PIS/BingBong/android/app/src/debug/AndroidManifest.xml
 	android:targetSdkVersion
@@ -173,14 +173,14 @@ ADDED from [:camera] /Users/okumura/Documents/PIS/BingBong/build/camera/intermed
 	android:name
 		ADDED from [:camera] /Users/okumura/Documents/PIS/BingBong/build/camera/intermediates/library_manifest/debug/AndroidManifest.xml:9:22-62
 uses-library#androidx.window.extensions
-ADDED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+ADDED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
 	android:required
-		ADDED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
 	android:name
-		ADDED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
 uses-library#androidx.window.sidecar
-ADDED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+ADDED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
 	android:required
-		ADDED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
 	android:name
-		ADDED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/f66a217eb4f7c102729e91f83d11ca5f/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/okumura/.gradle/caches/transforms-2/files-2.1/d6e8f04934b8dfbdf7ff5a918119be80/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51

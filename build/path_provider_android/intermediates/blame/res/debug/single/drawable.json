@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/okumura/Documents/PIS/BingBong/build/path_provider_android/intermediates/res/merged/debug/drawable/notification_bg.xml",
+        "source": "/Users/okumura/.gradle/caches/transforms-2/files-2.1/ef88d03f6e9909ac0b16eefad4ad9b0b/core-1.6.0/res/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "/Users/okumura/Documents/PIS/BingBong/build/path_provider_android/intermediates/res/merged/debug/drawable/notification_icon_background.xml",
+        "source": "/Users/okumura/.gradle/caches/transforms-2/files-2.1/ef88d03f6e9909ac0b16eefad4ad9b0b/core-1.6.0/res/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "/Users/okumura/Documents/PIS/BingBong/build/path_provider_android/intermediates/res/merged/debug/drawable/notification_tile_bg.xml",
+        "source": "/Users/okumura/.gradle/caches/transforms-2/files-2.1/ef88d03f6e9909ac0b16eefad4ad9b0b/core-1.6.0/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/Users/okumura/Documents/PIS/BingBong/build/path_provider_android/intermediates/res/merged/debug/drawable/notification_bg_low.xml",
+        "source": "/Users/okumura/.gradle/caches/transforms-2/files-2.1/ef88d03f6e9909ac0b16eefad4ad9b0b/core-1.6.0/res/drawable/notification_bg_low.xml"
+    }
+]

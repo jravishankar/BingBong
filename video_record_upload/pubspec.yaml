@@ -30,6 +30,12 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # for uploading files to firebase
+  firebase_core: ^1.0.3
+  firebase_storage: ^8.0.3
+
+  #pick file (in case default image picker isn't enough)
+  file_picker: ^3.0.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

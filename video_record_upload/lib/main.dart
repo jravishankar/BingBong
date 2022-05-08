@@ -1,9 +1,16 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:video_player/video_player.dart';
 import 'package:image_picker/image_picker.dart';
-void main() {
+import 'package:path/path.dart';
+import 'package:video_record_upload/api/firebase_api.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -46,8 +53,12 @@ class _VideoCaptureState extends State<VideoCapture> {
           setState(() {
 
           });
-          _playVideo(file);
-          print("Video Path ${file!.path}");
+
+
+          uploadVideo(file);
+          //_playVideo(file);
+          //print("Video Path ${file!.path}");
+
         },
         icon: Icon(Icons.video_call_rounded,),
       ),
@@ -71,6 +82,8 @@ class _VideoCaptureState extends State<VideoCapture> {
   }
 
 
+
+  // もういらないだろうけど、処理したビデオをユーザーに見せる際は使えるかも
   Future<void> _playVideo(XFile? file) async {
     if (file != null && mounted) {
       print("Loading Video");
@@ -108,6 +121,22 @@ class _VideoCaptureState extends State<VideoCapture> {
   }
 }
 
+Future<void> uploadVideo(XFile? videoFile) async {
+  print("Uploading Video");
+
+  if (videoFile == null) return;
+
+  //Convert so it can be uploaded
+  File file = File(videoFile.path);
+
+  final fileName = basename(file.path);
+  final firebaseDest = 'userFiles/$fileName';
+
+  FirebaseApi.uploadFile(firebaseDest, file);
+
+
+
+}
 
 class AspectRatioVideo extends StatefulWidget {
   AspectRatioVideo(this.controller);

@@ -15,32 +15,33 @@ def home():
 
 
 @app.route('/api/', methods=['GET'])
-def api_id():
+def main():
     # Check if an ID was provided as part of the URL.
     # If ID is provided, assign it to a variable.
     # If no ID is provided, display an error in the browser.
-    #if 'user_id' in request.args:
-    #    user_id = request.args['user_id']
-    #else:
-    #    return "Error: No id field provided. Please specify an id."
-#
-#    #if 'video_id' in request.args:
-#    #    video_id = request.args['video_id']
-#    #else:
-    #    return "Error: No id field provided. Please specify an id."
-    # Create an empty list for our results
-    results = [{}]
+
+
+    ## Get user and video id to find corresponding video in database
+    if 'user_id' in request.args:
+       user_id = request.args['user_id']
+    else:
+       return "Error: No id field provided. Please specify an id."
+
+   if 'video_id' in request.args:
+      video_id = request.args['video_id']
+   else:
+       return "Error: No id field provided. Please specify an id."
+
+    ## Download specific video from Firebase
+
     all_files = linker.get_all_files()
     for file in all_files:
     	print(file.name)
 
-    # Loop through the data and match results that fit the requested ID.
-    # IDs are unique, but other fields might return many results
-    #result = user_videos[user_id][video_id]
-    #results.append({'result_video': result})
 
-    # Use the jsonify function from Flask to convert our list of
-    # Python dictionaries to the JSON format.
+    ## 
+
+    results = [{}]
     return jsonify(results)
 
 

@@ -32,6 +32,8 @@ def main():
    else:
        return "Error: No id field provided. Please specify an id."
 
+   if 'pro_id'
+
     ## Download specific video from Firebase
 
     all_files = linker.get_all_files()

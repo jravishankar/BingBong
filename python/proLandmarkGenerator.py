@@ -1,6 +1,7 @@
 import cv2, os, sys, csv
 import mediapipe as mp
 import numpy as np
+from natsort import natsorted, ns
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
@@ -8,7 +9,8 @@ mp_pose = mp.solutions.pose
 def generate_csv(techniqueDir):
     technique_name = techniqueDir.split('/')[-1]
     imgDir = os.path.join(techniqueDir, 'img')
-    image_files = [os.path.join(imgDir, imageName) for imageName in sorted(os.listdir(imgDir)) if not imageName.startswith('.')]
+    image_files = [os.path.join(imgDir, imageName) for imageName in natsorted(os.listdir(imgDir)) if not imageName.startswith('.')]
+
     annImgDir = os.path.join(techniqueDir, 'ann_img')
     os.makedirs(annImgDir, exist_ok = True)
     BG_COLOR = (192, 192, 192) # gray
@@ -23,7 +25,7 @@ def generate_csv(techniqueDir):
             enable_segmentation=True,
             min_detection_confidence=0.5) as pose:
           for idx, file in enumerate(image_files):
-            print(file)
+            #print(file)
             image = cv2.imread(file)
             image_height, image_width, _ = image.shape
             # Convert the BGR image to RGB before processing.
@@ -53,7 +55,7 @@ def generate_csv(techniqueDir):
             file_name = file.split("/")[-1].split('.')[0] 
             ann_image_name = file_name + '_ann' + '.png'
             ann_file_path = os.path.join(annImgDir, ann_image_name)
-            print(ann_file_path)
+            #print(ann_file_path)
             cv2.imwrite(ann_file_path, annotated_image)
             # Plot pose world landmarks.
             #mp_drawing.plot_landmarks(

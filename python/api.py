@@ -16,9 +16,18 @@ def home():
 
 @app.route('/api/', methods=['GET'])
 def main():
-    # Check if an ID was provided as part of the URL.
-    # If ID is provided, assign it to a variable.
-    # If no ID is provided, display an error in the browser.
+    """
+    For API request, need user_id + video_id (storage/userFiles/user_id/video_id), and technique_id (storage/proVideos/technique_id/technique_id.mp4)
+
+    1. Download corresponding user video
+    2. Retrieve pro data (from csv)
+    3. Process user video into landmark data and align frames with pro data based on distance measure
+    4. Do pose difference estimation
+    5. Send relevant data back to firebase under user folder 
+    6. Return relevant Firebase location so that Flutter app can send a request the data from Firebase
+
+    """
+
 
 
     ## Get user and video id to find corresponding video in database
@@ -27,12 +36,12 @@ def main():
     else:
        return "Error: No id field provided. Please specify an id."
 
-   if 'video_id' in request.args:
+    if 'video_id' in request.args:
       video_id = request.args['video_id']
-   else:
+    else:
        return "Error: No id field provided. Please specify an id."
 
-   if 'pro_id'
+   #if 'pro_id'
 
     ## Download specific video from Firebase
 

@@ -23,4 +23,7 @@ class FirebaseLink:
     def get_all_files(self):
         return self.storage.list_files()
 
+    def put_file(localPath, firebasePath):
+        self.storage.child(firebasePath).put(localPath)
+        
 

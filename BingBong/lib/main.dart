@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
+import 'package:firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:video_player/video_player.dart';
@@ -14,7 +15,7 @@ import 'package:video_record_upload/api/python_api.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  final response = await http.get(Uri.parse('http://10.0.2.2:5000/api/user_videos?user_id=BingBong&video_id=video_01'));
+  //final response = await http.get(Uri.parse('http://10.0.2.2:5000/api/user_videos?user_id=BingBong&video_id=video_01'));
   //print(jsonDecode(response.body));
   runApp(const MyApp());
 }

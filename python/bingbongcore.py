@@ -12,29 +12,32 @@ class PoseDifferenceEstimator(object):
                  file_separator=',',
                  n_landmarks=33,
                  n_dimensions=3,
+                 top_n_by_max_distance=30,
+                 top_n_by_mean_distance=10,
                  axes_weights=(1., 1., 0.2)):
         currDir = os.path.dirname(os.path.realpath(__file__))
         self.proVideoDir = os.path.join(currDir, 'proVideos')
         self._pose_embedder = pose_embedder
-        #self._technique = technique
+        # self._technique = technique
         self._n_landmarks = n_landmarks
         self._n_dimensions = n_dimensions
         self._top_n_by_max_distance = top_n_by_max_distance
         self._top_n_by_mean_distance = top_n_by_mean_distance
         self._axes_weights = axes_weights
         self._pro_embedding_by_frame = self._load_technique_sample(technique)
-
+        self.file_extension = file_extension
+        self.file_separator = file_separator
 
 
     def _load_technique_sample(self, technique):
         """Loads the technique data from the csv file created by proLandmarkGenerator"""
-        csvPath = os.path.join(proVideoDir, technique, technique+'.csv')
+        csvPath = os.path.join(self.proVideoDir, technique, technique+'.csv')
         embedding_by_frame = [] # a list containing f landmark arrays ( of dimension n_landmarks x n_dimensions ) where f is the number of frames used
         with open(csvPath) as csvFile:
-            csv_reader = csv.reader(csv_file, delimiter=file_separator)
+            csv_reader = csv.reader(csvFile, delimiter=self.file_separator)
             for row in csv_reader:
-                assert len(row) == n_landmarks * n_dimensions + 1, 'Wrong number of values: {}'.format(len(row))
-                landmarks = np.array(row[1:], np.float32).reshape([n_landmarks, n_dimensions])
+                assert len(row) == self._n_landmarks * self._n_dimensions + 1, 'Wrong number of values: {}'.format(len(row))
+                landmarks = np.array(row[1:], np.float32).reshape([self._n_landmarks , self._n_dimensions])
                 embedding_by_frame.append(self._pose_embedder(landmarks))
         return embedding_by_frame
 

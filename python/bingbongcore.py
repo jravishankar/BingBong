@@ -1,5 +1,5 @@
 import numpy as np
-import os, csv math
+import os, csv math, copy
 
 
 class PoseDifferenceEstimator(object):
@@ -52,6 +52,8 @@ class PoseDifferenceEstimator(object):
         user_embedding_tuple = (user_embedding_by_frame. flip_user_embedding_by_frame)
 
         aligned_user_embedding_by_frame = self._align_user_and_pro(user_embedding_tuple)
+        assert len(aligned_user_embedding_by_frame) == len(self._pro_embedding_by_frame), "Alignment error"
+
 
 
     def _align_user_and_pro(self, user_embedding_tuple):
@@ -90,16 +92,55 @@ class PoseDifferenceEstimator(object):
 
 
 
+
         # At this point there are 3 possible cases (regarding user_embedding_by_frame_seg and self._pro_embedding_by_frame)
 
-        # 1. User has less frames than pro
+        
+        u_frame_count = len(user_embedding_by_frame_seg)
+        p_frame_count = len(self._pro_embedding_by_frame)
 
-        # 2. User has more frames than pro
+        if u_frame_count < p_frame_count: # 1. User has less frames than pro
+            aligned_user_embedding_by_frame = self._extend_pose_embedding_by_frame(user_embedding_by_frame, p_frame_count - u_frame_count)
+
+        elif u_frame_count > p_frame_count:  # 2. User has more frames than pro
+            self.pro_embedding_by_frame = self._extend_pose_embedding_by_frame(self.pro_embedding_by_frame, u_frame_count - p_frame_count)
+            aligned_user_embedding_by_frame = user_embedding_by_frame
+       
+        else: # 3. Same number of frames
+            aligned_user_embedding_by_frame = user_embedding_by_frame
+        ### original user video
+        ### pro video
+
+
 
         # 3. User and pro have an equal amount of frames (likely still misaligned)
 
 
         return aligned_user_embedding_by_frame
+
+
+    def _extend_pose_embedding_by_frame(pose_embedding_by_frame, target_frame_count):
+        current_frame_count = len(pose_embedding_by_frame)
+        assert target_frame_count > current_frame_count, "Error with extending pose embedding, target "
+        step = target_frame_count - current_frame_count + 1
+        chunks = []
+        for i in range(0, current_frame_count, step):
+            chunk = copy.deepcopy(pose_embedding_by_frame[i:i+step])
+            copies.append(chunk)
+
+        return_embedding_by_frame = []
+        for chunk in chunks[:-1]:
+            return_embedding_by_frame += chunk + [chunk[-1]]
+
+        return_embedding_by_frame += chunks[-1]
+        return return_embedding_by_frame
+
+
+
+
+
+
+
 
 
 

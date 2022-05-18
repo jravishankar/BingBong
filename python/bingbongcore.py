@@ -1,11 +1,11 @@
 import numpy as np
-import os, csv math, copy
+import os, csv, math, copy
 
 
 class PoseDifferenceEstimator(object):
     """Calculates differences between user and pro pose landmarks."""
 
-    def __init__(self, 
+    def __init__(self,
                  pose_embedder,
                  technique,
                  file_extension='csv',
@@ -27,6 +27,8 @@ class PoseDifferenceEstimator(object):
         self._pro_embedding_by_frame = self._load_technique_sample(technique)
         self.file_extension = file_extension
         self.file_separator = file_separator
+
+        self.score_x = 1/6
 
 
     def _load_technique_sample(self, technique):
@@ -54,7 +56,8 @@ class PoseDifferenceEstimator(object):
         aligned_user_embedding_by_frame = self._align_user_and_pro(user_embedding_tuple)
         assert len(aligned_user_embedding_by_frame) == len(self._pro_embedding_by_frame), "Alignment error"
 
-
+        scores = self._computation_scores(aligned_user_embedding_by_frame, self._pro_embedding_by_frame)
+        # plot
 
     def _align_user_and_pro(self, user_embedding_tuple):
         user_embedding_by_frame = user_embedding_tuple[0]
@@ -67,11 +70,11 @@ class PoseDifferenceEstimator(object):
         pro_start_embedding = self._pro_embedding_by_frame[0]
         pro_end_embedding = self._pro_embedding_by_frame[-1]
 
-        user_start_tuple = self._most_similar_pose(user_embedding_by_frame, pro_starting_embedding)
-        user_end_tuple = self._most_similar_pose(user_embedding_by_frame, pro_ending_embedding)
+        user_start_tuple = self._most_similar_pose(user_embedding_by_frame, pro_start_embedding)
+        user_end_tuple = self._most_similar_pose(user_embedding_by_frame, pro_end_embedding)
 
-        flip_user_start_tuple = self._most_similar_pose(flip_user_embedding_by_frame, pro_starting_embedding)
-        flip_user_end_tuple = self._most_similar_pose(flip_user_embedding_by_frame, pro_ending_embedding)
+        flip_user_start_tuple = self._most_similar_pose(flip_user_embedding_by_frame, pro_start_embedding)
+        flip_user_end_tuple = self._most_similar_pose(flip_user_embedding_by_frame, pro_end_embedding)
 
         assert user_start_tuple[1] < user_end_tuple[1] or flip_user_start_tuple[1] < flip_user_end_tuple[1], 'Alignment could not be performed because of frame matching error'
         
@@ -103,7 +106,7 @@ class PoseDifferenceEstimator(object):
             aligned_user_embedding_by_frame = self._extend_pose_embedding_by_frame(user_embedding_by_frame, p_frame_count - u_frame_count)
 
         elif u_frame_count > p_frame_count:  # 2. User has more frames than pro
-            self.pro_embedding_by_frame = self._extend_pose_embedding_by_frame(self.pro_embedding_by_frame, u_frame_count - p_frame_count)
+            self.pro_embedding_by_frame = self._extend_pose_embedding_by_frame(self._pro_embedding_by_frame, u_frame_count - p_frame_count)
             aligned_user_embedding_by_frame = user_embedding_by_frame
        
         else: # 3. Same number of frames
@@ -119,11 +122,12 @@ class PoseDifferenceEstimator(object):
         return aligned_user_embedding_by_frame
 
 
-    def _extend_pose_embedding_by_frame(pose_embedding_by_frame, target_frame_count):
+    def _extend_pose_embedding_by_frame(self, pose_embedding_by_frame, target_frame_count):
         current_frame_count = len(pose_embedding_by_frame)
         assert target_frame_count > current_frame_count, "Error with extending pose embedding, target "
         step = target_frame_count - current_frame_count + 1
         chunks = []
+        copies = []
         for i in range(0, current_frame_count, step):
             chunk = copy.deepcopy(pose_embedding_by_frame[i:i+step])
             copies.append(chunk)
@@ -135,11 +139,15 @@ class PoseDifferenceEstimator(object):
         return_embedding_by_frame += chunks[-1]
         return return_embedding_by_frame
 
+    def _computation_scores(self, target_embedding_1, target_embedding_2):
+        scores = []
+        for frame_1, frame_2 in zip(target_embedding_1, target_embedding_2):
+            mean_dist = np.mean(np.abs(frame_1 - frame_2) * self._axes_weights)
+            print(mean_dist)
+            scores.append(math.atan(self.score_x * mean_dist)/(math.pi/2))
+        print(scores)
 
-
-
-
-
+        return scores
 
 
 
@@ -149,8 +157,11 @@ class PoseDifferenceEstimator(object):
         min_dist_index = 0
         for i, frame_embedding in enumerate(pose_embedding_by_frame):
             mean_dist = np.mean(np.abs(frame_embedding - target_embedding) * self._axes_weights)
-            min_dist = min(mean_dist, min_dist)
-            min_dist_index = i
+
+            if min_dist > mean_dist:
+                min_dist = mean_dist
+                min_dist_index = i
+
         return (min_dist, min_dist_index)
 
 

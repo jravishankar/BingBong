@@ -1,5 +1,6 @@
 import numpy as np
 import os, csv, math, copy
+import matplotlib.pyplot as plt
 
 
 class PoseDifferenceEstimator(object):
@@ -56,8 +57,21 @@ class PoseDifferenceEstimator(object):
         aligned_user_embedding_by_frame = self._align_user_and_pro(user_embedding_tuple)
         assert len(aligned_user_embedding_by_frame) == len(self._pro_embedding_by_frame), "Alignment error"
 
-        scores = self._computation_scores(aligned_user_embedding_by_frame, self._pro_embedding_by_frame)
+        scores = self._computation_scores_framewise(aligned_user_embedding_by_frame, self._pro_embedding_by_frame) # frame by frame scores
+        embedding_names = self._pose_embedder._get_embedding_names
+
         # plot
+        plt.bar(range(len(embedding_names)), scores, align='center')
+        plt.show()
+
+        
+        # calculate errors (might want to use self._computation_scores_embeddingwise to make it easier to tell which sections of pose are more off)
+
+        # 1. Is elbow close enough to body
+        # 2. Are knees bent enough
+        # 3. Is rotation being done properly
+
+
 
     def _align_user_and_pro(self, user_embedding_tuple):
         user_embedding_by_frame = user_embedding_tuple[0]
@@ -111,6 +125,9 @@ class PoseDifferenceEstimator(object):
        
         else: # 3. Same number of frames
             aligned_user_embedding_by_frame = user_embedding_by_frame
+
+        assert len(aligned_user_embedding_by_frame) == len(self._pro_embedding_by_frame), print("Our extension mechanism doesn't work properly")
+
         ### original user video
         ### pro video
 
@@ -139,17 +156,29 @@ class PoseDifferenceEstimator(object):
         return_embedding_by_frame += chunks[-1]
         return return_embedding_by_frame
 
-    def _computation_scores(self, target_embedding_1, target_embedding_2):
+
+    def _computation_scores_framewise(self, target_embedding_1, target_embedding_2):
+    	# Compute the mean distance between embeddings on each frame
+    	# Length of results vector is equal to number of frames i.e. len(target_embedding_1)
         scores = []
         for frame_1, frame_2 in zip(target_embedding_1, target_embedding_2):
             mean_dist = np.mean(np.abs(frame_1 - frame_2) * self._axes_weights)
             print(mean_dist)
             scores.append(math.atan(self.score_x * mean_dist)/(math.pi/2))
-        print(scores)
 
         return scores
 
+    def _computation_scores_embeddingwise(self, target_embedding_1, target_embedding_2):
+    	# Compute the mean distance of each portion of embedding across all frames
+    	# Length of results vector is equal to number of embeddings i.e. target_embedding_1[0].shape[0]
+    	num_frames = len(target_embedding_1)
+    	embedding_shape = target_embedding_1[0].shape
+    	scores_by_embedding = np.zeros(embedding_shape[0])
 
+    	for frame_1, frame_2 in zip(target_embedding_1, target_embedding_2):
+            scores_by_embedding += np.mean(np.abs(frame_1 - frame_2) * self._axes_weights, axis = 1)
+
+        return scores_by_embedding/num_frames
 
 
     def _most_similar_pose(self, pose_embedding_by_frame, target_embedding):

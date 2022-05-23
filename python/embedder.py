@@ -129,7 +129,7 @@ class FullBodyPoseEmbedder(object):
     embedding = np.array([
         # One joint.
 
-        self._get_distance(
+        self._get_distance( 
             self._get_average_by_names(landmarks, 'left_hip', 'right_hip'),
             self._get_average_by_names(landmarks, 'left_shoulder', 'right_shoulder')),
 
@@ -176,15 +176,43 @@ class FullBodyPoseEmbedder(object):
 
         # Body bent direction.
 
-        # self._get_distance(
-        #     self._get_average_by_names(landmarks, 'left_wrist', 'left_ankle'),
-        #     landmarks[self._landmark_names.index('left_hip')]),
-        # self._get_distance(
-        #     self._get_average_by_names(landmarks, 'right_wrist', 'right_ankle'),
-        #     landmarks[self._landmark_names.index('right_hip')]),
+        self._get_distance(
+            self._get_average_by_names(landmarks, 'left_wrist', 'left_ankle'),
+            landmarks[self._landmark_names.index('left_hip')]),
+        self._get_distance(
+            self._get_average_by_names(landmarks, 'right_wrist', 'right_ankle'),
+            landmarks[self._landmark_names.index('right_hip')])
     ])
 
     return embedding
+
+  def _get_embedding_names(self):
+        embedding_names = [
+            'ltr_hip',
+            'ltr_shoulder',
+            'l_shoulder_elbow',
+            'r_shoulder_elbow',
+            'l_elbow_wrist',
+            'r_elbow_wrist',
+            'l_hip_knee',
+            'r_hip_knee',
+            'l_knee_ankle',
+            'r_knee_ankle',
+            'l_shoulder_wrist',
+            'r_shoulder_wrist',
+            'l_hip_ankle',
+            'r_hip_ankle',
+            'l_hip_wrist',
+            'r_hip_wrist',
+            'ltr_elbow',
+            'ltr_knee',
+            'ltr_wrist',
+            'ltr_ankle',
+            'l_bent',
+            'r_bent'
+        ]
+
+        return embedding_names
 
   def _get_average_by_names(self, landmarks, name_from, name_to):
     lmk_from = landmarks[self._landmark_names.index(name_from)]
@@ -198,3 +226,4 @@ class FullBodyPoseEmbedder(object):
 
   def _get_distance(self, lmk_from, lmk_to):
     return lmk_to - lmk_from
+

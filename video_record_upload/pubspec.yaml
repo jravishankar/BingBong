@@ -33,6 +33,7 @@ dependencies:
   # for uploading files to firebase
   firebase_core: ^1.0.3
   firebase_storage: ^8.0.3
+  firebase_auth: ^1.4.1
 
   #pick file (in case default image picker isn't enough)
   file_picker: ^3.0.1
@@ -40,6 +41,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+
+  spring_button: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +55,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  flutter_native_splash: ^1.1.5+1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -63,6 +67,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/image/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -94,3 +102,16 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_native_splash:
+  color: '#991a00'
+  image: 'assets/image/image002.png'
+  color_dark: '#991a00'
+  image_dark: 'assets/image/image002.png'
+  fullscreen: true
+  android_gravity: center
+  android_12:
+    icon_background_color: '#991a00'
+    image: 'assets/image/image002.png'
+    icon_background_color_dark: '#991a00'
+    image_dark: 'assets/image/image002.png'

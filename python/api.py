@@ -79,7 +79,7 @@ def main():
     firebase_upload_dest = 'userFiles/{}/{}'.format(user_id, video_id + '.txt') # this should eventually be a .mp4 file for user to see, more illustrative of errors
 
 
-
+    
 
 
 

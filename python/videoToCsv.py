@@ -2,6 +2,7 @@ import cv2, os, sys, csv
 import mediapipe as mp
 import numpy as np
 from natsort import natsorted, ns
+from embedder import FullBodyPoseEmbedder
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
@@ -14,15 +15,17 @@ def generate_csv_and_anns(caller, videoDir):
         techniqueDir = ('/').join(videoDir.split('/')[:-1])
         imgDir = os.path.join(techniqueDir, 'img')
         os.makedirs(imgDir, exist_ok = False)
+        print(videoPath)
+        print(imgDir)
         os.system('ffmpeg -i {}.mp4 -vf fps=60 {}/out%d.png'.format(videoPath, imgDir))
-        
+
     else:
         techniqueDir = videoDir
-
+    print(techniqueDir)
     technique_name = techniqueDir.split('/')[-1]
     imgDir = os.path.join(techniqueDir, 'img')
     image_files = [os.path.join(imgDir, imageName) for imageName in natsorted(os.listdir(imgDir)) if not imageName.startswith('.')]
-
+    embedder = FullBodyPoseEmbedder()
     annImgDir = os.path.join(techniqueDir, 'ann_img')
     os.makedirs(annImgDir, exist_ok = True)
     BG_COLOR = (192, 192, 192) # gray
@@ -84,7 +87,8 @@ def generate_csv_and_anns(caller, videoDir):
                 dtype=np.float32)
             assert pose_landmarks.shape == (33, 3), 'Unexpected landmarks shape: {}'.format(pose_landmarks.shape)
             pose_landmarks_array.append(pose_landmarks)
-            csv_out_writer.writerow([file] + pose_landmarks.flatten().astype(np.str).tolist())
+            pose_size = embedder._get_pose_size(landmarks, embedder._torso_size_multiplier)
+            csv_out_writer.writerow([file] + pose_landmarks.flatten().astype(np.str).tolist() + [pose_size])
 
 
     if caller == "user": 
@@ -106,7 +110,7 @@ if __name__ == "__main__":
     elif caller == "pro":
     	technique = sys.argv[2]
     	videoDir = os.path.join(proVideoDir, technique)
-    	videoPath = os.path.join(techniqueDir, technique)
+    	videoPath = os.path.join(videoDir, technique)
     else:
     	print("Can only call videoToCsv on user or pro videos (There are no other types of videos!)")
     imgDir = os.path.join(videoDir, 'img')

@@ -2,23 +2,35 @@
 import os, csv
 import numpy as np
 from embedder import FullBodyPoseEmbedder
-from bingbongcore import PoseDifferenceEstimator as Pose
+from bingbongcore import PoseDifferenceEstimator
+from videoToCsv import generate_csv_and_anns
 
-user_test = "IMG_1064"
-technique = "forehandDrive"
 
-pose_embedder = FullBodyPoseEmbedder()
+def load_technique_sample(technique_csv_path):
+    """Loads the technique data from the csv file created by proLandmarkGenerator"""
+    landmarks_by_frame = [] # a list containing f landmark arrays ( of dimension n_landmarks x n_dimensions ) where f is the number of frames used
+    with open(technique_csv_path) as csvFile:
+        csv_reader = csv.reader(csvFile)
+        for row in csv_reader:
+            assert len(row) == 33 * 3 + 1, 'Wrong number of values: {}'.format(len(row))
+            landmarks = np.array(row[1:-1], np.float32).reshape([33 , 3])
+            landmarks_by_frame.append(landmarks)
+    return landmarks_by_frame
 
-# load user's csv
+vid = 'forehand_shakehold'
+technique_id = 'forehand_shakehold_furtherTrim'
 currDir = os.path.dirname(os.path.realpath(__file__))
-userDir = os.path.join(currDir, 'user_test')
-csvPath = os.path.join(userDir, user_test, user_test+'.csv')
-with open(csvPath) as csvFile:
-    embedding_by_frame = []
-    csv_reader = csv.reader(csvFile, delimiter=',')
-    for row in csv_reader:
-        landmarks = np.array(row[1:], np.float32).reshape([33, 3])
-        embedding_by_frame.append(pose_embedder(landmarks))
+userDir = os.path.join(currDir, 'userVideos', 'WhiteMan')
+proVideoDir = os.path.join(currDir, 'proVideos')
+vidPath = os.path.join(userDir, vid, vid)
+csvPath = os.path.join(userDir, vid, vid + '.csv')
 
-pose_difference = Pose(pose_embedder, technique)
-user_embedding = pose_difference(embedding_by_frame)
+pro_data_csv_path = os.path.join(proVideoDir, technique_id, technique_id + '.csv')
+
+user_landmarks_array = generate_csv_and_anns('user', vidPath)
+#user_landmarks_array = load_technique_sample(csvPath)
+pose_embedder = FullBodyPoseEmbedder()
+difference_estimator = PoseDifferenceEstimator(pose_embedder, pro_data_csv_path)
+difference_estimator(user_landmarks_array)
+
+

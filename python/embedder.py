@@ -188,8 +188,7 @@ class FullBodyPoseEmbedder(object):
 
   def _get_embedding_names(self):
         embedding_names = [
-            'ltr_hip',
-            'ltr_shoulder',
+            'ltr',
             'l_shoulder_elbow',
             'r_shoulder_elbow',
             'l_elbow_wrist',
@@ -204,10 +203,14 @@ class FullBodyPoseEmbedder(object):
             'r_hip_ankle',
             'l_hip_wrist',
             'r_hip_wrist',
+            'l_shoulder_ankle',
+            'r_shoulder_ankle',
+            'l_hip_wrist',
+            'r_hip_wrist',
             'ltr_elbow',
             'ltr_knee',
             'ltr_wrist',
-            'ltr_ankle',
+            'ltr_ankle', # --> depending on the tehcnique being practiced, have predetermined advice if this is the biggest problem
             'l_bent',
             'r_bent'
         ]

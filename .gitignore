@@ -48,5 +48,6 @@ app.*.map.json
 # Python 
 
 /python/proVideos/
+/python/userVideos/
 /python/bingbong_firebase_key.json
 /python/__pycache__

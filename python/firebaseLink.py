@@ -25,5 +25,6 @@ class FirebaseLink:
 
     def put_file(localPath, firebasePath):
         self.storage.child(firebasePath).put(localPath)
-        
 
+    def download_file(localPath, firebasePath):
+        self.storage.child(firebasePath).download(localPath)

@@ -8,7 +8,7 @@ class PoseDifferenceEstimator(object):
 
     def __init__(self,
                  pose_embedder,
-                 technique,
+                 technique_csv_path,
                  file_extension='csv',
                  file_separator=',',
                  n_landmarks=33,
@@ -25,18 +25,17 @@ class PoseDifferenceEstimator(object):
         self._top_n_by_max_distance = top_n_by_max_distance
         self._top_n_by_mean_distance = top_n_by_mean_distance
         self._axes_weights = axes_weights
-        self._pro_embedding_by_frame = self._load_technique_sample(technique)
+        self._pro_embedding_by_frame = self._load_technique_sample(technique_csv_path)
         self.file_extension = file_extension
         self.file_separator = file_separator
 
         self.score_x = 1/6
 
 
-    def _load_technique_sample(self, technique):
+    def _load_technique_sample(self, technique_csv_path):
         """Loads the technique data from the csv file created by proLandmarkGenerator"""
-        csvPath = os.path.join(self.proVideoDir, technique, technique+'.csv')
         embedding_by_frame = [] # a list containing f landmark arrays ( of dimension n_landmarks x n_dimensions ) where f is the number of frames used
-        with open(csvPath) as csvFile:
+        with open(technique_csv_path) as csvFile:
             csv_reader = csv.reader(csvFile, delimiter=self.file_separator)
             for row in csv_reader:
                 assert len(row) == self._n_landmarks * self._n_dimensions + 1, 'Wrong number of values: {}'.format(len(row))
@@ -60,6 +59,7 @@ class PoseDifferenceEstimator(object):
         scores = self._computation_scores_framewise(aligned_user_embedding_by_frame, self._pro_embedding_by_frame) # frame by frame scores
         embedding_names = self._pose_embedder._get_embedding_names
 
+        self.result = np.mean(scores)
         # plot
         plt.bar(range(len(embedding_names)), scores, align='center')
         plt.show()
@@ -166,7 +166,7 @@ class PoseDifferenceEstimator(object):
             print(mean_dist)
             scores.append(math.atan(self.score_x * mean_dist)/(math.pi/2))
 
-        return scores
+        return np.array(scores)
 
     def _computation_scores_embeddingwise(self, target_embedding_1, target_embedding_2):
     	# Compute the mean distance of each portion of embedding across all frames

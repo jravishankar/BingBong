@@ -6,7 +6,19 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
-def generate_csv(techniqueDir):
+def generate_csv_and_anns(caller, videoDir):
+    if caller == 'user':
+        # in this case videoDir is actually the path to the video itself
+        
+        videoPath = videoDir
+        techniqueDir = ('/').join(videoDir.split('/')[:-1])
+        imgDir = os.path.join(techniqueDir, 'img')
+        os.makedirs(imgDir, exist_ok = False)
+        os.system('ffmpeg -i {}.mp4 -vf fps=60 {}/out%d.png'.format(videoPath, imgDir))
+        
+    else:
+        techniqueDir = videoDir
+
     technique_name = techniqueDir.split('/')[-1]
     imgDir = os.path.join(techniqueDir, 'img')
     image_files = [os.path.join(imgDir, imageName) for imageName in natsorted(os.listdir(imgDir)) if not imageName.startswith('.')]
@@ -15,7 +27,7 @@ def generate_csv(techniqueDir):
     os.makedirs(annImgDir, exist_ok = True)
     BG_COLOR = (192, 192, 192) # gray
     csvPath = os.path.join(techniqueDir, technique_name + '.csv')
-
+    pose_landmarks_array = []
     with open(csvPath, 'w') as csvFile:
         csv_out_writer = csv.writer(csvFile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 
@@ -63,6 +75,7 @@ def generate_csv(techniqueDir):
 
             ## For actually writing the csv file
             pose_landmarks = results.pose_landmarks
+
             
 
             pose_landmarks = np.array(
@@ -70,7 +83,14 @@ def generate_csv(techniqueDir):
                  for lmk in pose_landmarks.landmark],
                 dtype=np.float32)
             assert pose_landmarks.shape == (33, 3), 'Unexpected landmarks shape: {}'.format(pose_landmarks.shape)
+            pose_landmarks_array.append(pose_landmarks)
             csv_out_writer.writerow([file] + pose_landmarks.flatten().astype(np.str).tolist())
+
+
+    if caller == "user": 
+        ## in main file logic, we create all the necessary data (anns, csv) for visualizations 
+        ## and then return the user data for calculation processing immediately
+        return pose_landmarks_array
 
 
 if __name__ == "__main__":
@@ -83,7 +103,7 @@ if __name__ == "__main__":
     	userId, videoId = sys.argv[2], sys.argv[3]
     	videoDir = os.path.join(userVideoDir, userId, videoId)
     	videoPath = os.path.join(videoDir, videoId)
-    else if caller == "pro":
+    elif caller == "pro":
     	technique = sys.argv[2]
     	videoDir = os.path.join(proVideoDir, technique)
     	videoPath = os.path.join(techniqueDir, technique)
@@ -92,7 +112,7 @@ if __name__ == "__main__":
     imgDir = os.path.join(videoDir, 'img')
     os.makedirs(imgDir, exist_ok = False)
     os.system('ffmpeg -i {}.mp4 -vf fps=60 {}/out%d.png'.format(videoPath, imgDir))
-    generate_csv(videoDir)
+    generate_csv_and_anns(caller, videoDir)
 
 
 

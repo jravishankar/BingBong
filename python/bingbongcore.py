@@ -65,7 +65,8 @@ class PoseDifferenceEstimator(object):
 		print(scores.shape)
 		print(len(embedding_names))
 		# plot
-		plt.bar(range(len(embedding_names)), list(scores), align='center')
+		plt.bar(range(1, len(embedding_names)+1), list(scores), align='center')
+		plt.ylim((0,50))
 		plt.show()
 
 		

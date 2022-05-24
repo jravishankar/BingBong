@@ -87,7 +87,7 @@ def generate_csv_and_anns(caller, videoDir):
                 dtype=np.float32)
             assert pose_landmarks.shape == (33, 3), 'Unexpected landmarks shape: {}'.format(pose_landmarks.shape)
             pose_landmarks_array.append(pose_landmarks)
-            pose_size = embedder._get_pose_size(landmarks, embedder._torso_size_multiplier)
+            pose_size = embedder._get_pose_size(pose_landmarks, embedder._torso_size_multiplier)
             csv_out_writer.writerow([file] + pose_landmarks.flatten().astype(np.str).tolist() + [pose_size])
 
 

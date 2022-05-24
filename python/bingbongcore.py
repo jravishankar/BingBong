@@ -1,6 +1,7 @@
 import numpy as np
 import os, csv, math, copy
 import matplotlib.pyplot as plt
+import itertools
 
 
 class PoseDifferenceEstimator(object):
@@ -39,7 +40,7 @@ class PoseDifferenceEstimator(object):
 		with open(technique_csv_path) as csvFile:
 			csv_reader = csv.reader(csvFile, delimiter=self.file_separator)
 			for row in csv_reader:
-				assert len(row) == self._n_landmarks * self._n_dimensions + 1, 'Wrong number of values: {}'.format(len(row))
+				assert len(row) == self._n_landmarks * self._n_dimensions + 2, 'Wrong number of values: {}'.format(len(row))
 				landmarks = np.array(row[1:-1], np.float32).reshape([self._n_landmarks , self._n_dimensions])
 				embedding_by_frame.append(self._pose_embedder(landmarks))
 		return embedding_by_frame
@@ -126,9 +127,13 @@ class PoseDifferenceEstimator(object):
 		print('Post trimming user frames: ', u_frame_count)
 		print('Post trimming pro frames: ', p_frame_count)
 
+
 		if u_frame_count < p_frame_count: # 1. User has less frames than pro
+			assert p_frame_count // u_frame_count <= 5, print("Can't extend because user video wasn trinmed too much, try again")
 			aligned_user_embedding_by_frame = self._extend_pose_embedding_by_frame(user_embedding_by_frame_seg, p_frame_count)
 		elif u_frame_count > p_frame_count:  # 2. User has more frames than pro
+			assert u_frame_count // p_frame_count <= 5, print("Can't extend because user video wasn't trinmed enough, try again")
+
 			self._pro_embedding_by_frame = self._extend_pose_embedding_by_frame(self._pro_embedding_by_frame, u_frame_count)
 			aligned_user_embedding_by_frame = user_embedding_by_frame_seg
 	   
@@ -153,17 +158,34 @@ class PoseDifferenceEstimator(object):
 	def _extend_pose_embedding_by_frame(self, pose_embedding_by_frame, target_frame_count):
 		current_frame_count = len(pose_embedding_by_frame)
 		assert target_frame_count > current_frame_count, "Error with extending pose embedding, target "
+
+		if target_frame_count / current_frame_count >= 1.0:
+
+			multiply = target_frame_count // current_frame_count
+			pose_embedding_by_frame = list(itertools.chain.from_iterable(itertools.repeat(x, multiply) for x in pose_embedding_by_frame))
+
+			current_frame_count = len(pose_embedding_by_frame)
+
 		total_chunks = (target_frame_count - current_frame_count) + 2
+
 		#step = current_frame_count // total_chunks
 
 		#if step == 0:
 
 
+		print(current_frame_count)
+		print(target_frame_count)
+
 		#print('Step', step)
 		copies = []
 		spacing = [int(i) for i in np.linspace(0, current_frame_count, total_chunks)]
+		print(spacing)
+		print(len(spacing))
 		for i, num in enumerate(spacing[:-1]):
-			copies.append(copy.deepcopy(pose_embedding_by_frame[spacing[i]:spacing[i+1]]))
+			if spacing[i] == spacing[i+1]:
+				copies.append(copy.deepcopy(pose_embedding_by_frame[spacing[i]:spacing[i+1]+1]))
+			else:
+				copies.append(copy.deepcopy(pose_embedding_by_frame[spacing[i]:spacing[i+1]]))
 
 		#copies.append()
 		return_embedding_by_frame = []
@@ -171,9 +193,10 @@ class PoseDifferenceEstimator(object):
 		for chunk in copies[:-1]:
 			return_embedding_by_frame += chunk + [chunk[-1]]
 		#print(len(chunks))
+		#print(copies[-1])
 
 		return_embedding_by_frame += copies[-1]
-		#print(len(return_embedding_by_frame))
+		print(len(return_embedding_by_frame))
 		return return_embedding_by_frame
 
 

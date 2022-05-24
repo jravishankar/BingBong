@@ -73,14 +73,13 @@ def main():
     difference_estimator = PoseDifferenceEstimator(embedder, pro_data_csv_path)
     difference_estimator(user_landmarks_array) #this calls our estimator object on user data, does the actual core processing for BingBong
 
+
+
     ## Post processing (i.e. what do we want to send back to the user)
     # difference_estimator.scores is good for now? can just write this as a number to a text file for initial testing purposes
 
-    firebase_upload_dest = 'userFiles/{}/{}'.format(user_id, video_id + '.txt') # this should eventually be a .mp4 file for user to see, more illustrative of errors
-
-
+    firebase_upload_dest = 'userFiles/{}/{}'.format(user_id, video_id + '_response.mp4') # this should eventually be a .mp4 file for user to see, more illustrative of errors
     
-
 
 
     results = [{'dest':firebase_upload_dest}] # specifies the pickup point for Flutter

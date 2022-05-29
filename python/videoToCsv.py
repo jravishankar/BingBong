@@ -7,12 +7,18 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
+import platform
+if platform.system().lower() == 'windows':
+    pathSeparator = '\\'
+else:
+    pathSeparator = '/'
+
 def generate_csv_and_anns(caller, videoDir):
     if caller == 'user':
         # in this case videoDir is actually the path to the video itself
         
         videoPath = videoDir
-        techniqueDir = ('/').join(videoDir.split('/')[:-1])
+        techniqueDir = pathSeparator.join(videoDir.split(pathSeparator)[:-1])
         imgDir = os.path.join(techniqueDir, 'img')
         os.makedirs(imgDir, exist_ok = False)
         print(videoPath)
@@ -22,7 +28,7 @@ def generate_csv_and_anns(caller, videoDir):
     else:
         techniqueDir = videoDir
     print(techniqueDir)
-    technique_name = techniqueDir.split('/')[-1]
+    technique_name = techniqueDir.split(pathSeparator)[-1]
     imgDir = os.path.join(techniqueDir, 'img')
     image_files = [os.path.join(imgDir, imageName) for imageName in natsorted(os.listdir(imgDir)) if not imageName.startswith('.')]
     embedder = FullBodyPoseEmbedder()
@@ -31,7 +37,7 @@ def generate_csv_and_anns(caller, videoDir):
     BG_COLOR = (192, 192, 192) # gray
     csvPath = os.path.join(techniqueDir, technique_name + '.csv')
     pose_landmarks_array = []
-    with open(csvPath, 'w') as csvFile:
+    with open(csvPath, 'w', newline='') as csvFile:
         csv_out_writer = csv.writer(csvFile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 
         with mp_pose.Pose(
@@ -67,7 +73,7 @@ def generate_csv_and_anns(caller, videoDir):
                 results.pose_landmarks,
                 mp_pose.POSE_CONNECTIONS,
                 landmark_drawing_spec=mp_drawing_styles.get_default_pose_landmarks_style())
-            file_name = file.split("/")[-1].split('.')[0] 
+            file_name = file.split(pathSeparator)[-1].split('.')[0]
             ann_image_name = file_name + '_ann' + '.png'
             ann_file_path = os.path.join(annImgDir, ann_image_name)
             #print(ann_file_path)
@@ -103,16 +109,16 @@ if __name__ == "__main__":
     userVideoDir = os.path.join(currDir, 'userVideos')
     caller = sys.argv[1]
     if caller == "user":
-    	assert len(sys.argv) == 4, print("Argument error")
-    	userId, videoId = sys.argv[2], sys.argv[3]
-    	videoDir = os.path.join(userVideoDir, userId, videoId)
-    	videoPath = os.path.join(videoDir, videoId)
+        assert len(sys.argv) == 4, print("Argument error")
+        userId, videoId = sys.argv[2], sys.argv[3]
+        videoDir = os.path.join(userVideoDir, userId, videoId)
+        videoPath = os.path.join(videoDir, videoId)
     elif caller == "pro":
-    	technique = sys.argv[2]
-    	videoDir = os.path.join(proVideoDir, technique)
-    	videoPath = os.path.join(videoDir, technique)
+        technique = sys.argv[2]
+        videoDir = os.path.join(proVideoDir, technique)
+        videoPath = os.path.join(videoDir, technique)
     else:
-    	print("Can only call videoToCsv on user or pro videos (There are no other types of videos!)")
+        print("Can only call videoToCsv on user or pro videos (There are no other types of videos!)")
     imgDir = os.path.join(videoDir, 'img')
     os.makedirs(imgDir, exist_ok = False)
     os.system('ffmpeg -i {}.mp4 -vf fps=60 {}/out%d.png'.format(videoPath, imgDir))

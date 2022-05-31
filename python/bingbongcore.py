@@ -37,7 +37,7 @@ class PoseDifferenceEstimator(object):
 	def _load_technique_sample(self, technique_csv_path):
 		"""Loads the technique data from the csv file created by proLandmarkGenerator"""
 		embedding_by_frame = [] # a list containing f landmark arrays ( of dimension n_landmarks x n_dimensions ) where f is the number of frames used
-		with open(technique_csv_path) as csvFile:
+		with open(technique_csv_path, newline='') as csvFile:
 			csv_reader = csv.reader(csvFile, delimiter=self.file_separator)
 			for row in csv_reader:
 				assert len(row) == self._n_landmarks * self._n_dimensions + 2, 'Wrong number of values: {}'.format(len(row))
@@ -55,20 +55,29 @@ class PoseDifferenceEstimator(object):
 		flip_user_embedding_by_frame = [self._pose_embedder(user_lmks * np.array([-1, 1, 1])) for user_lmks in user_landmarks_by_frame]
 		user_embedding_tuple = (user_embedding_by_frame, flip_user_embedding_by_frame)
 
-		aligned_user_embedding_by_frame = self._align_user_and_pro(user_embedding_tuple)
+		aligned_user_embedding_by_frame, start, end = self._align_user_and_pro(user_embedding_tuple)
 		assert len(aligned_user_embedding_by_frame) == len(self._pro_embedding_by_frame), "Alignment error"
 
 		scores = self._computation_scores_embeddingwise(aligned_user_embedding_by_frame, self._pro_embedding_by_frame) # frame by frame scores
 		embedding_names = self._pose_embedder._get_embedding_names()
 
-		self.result = np.mean(scores)
-		print(scores.shape)
-		print(len(embedding_names))
-		# plot
-		plt.bar(range(1, len(embedding_names)+1), list(scores), align='center')
-		plt.ylim((0,50))
-		plt.show()
+		# the max
+		max_score_embeddingwise = np.argmax(scores)
+		# max_score_embeddingwise_name = embedding_names[max_score_embeddingwise]
+		# recommendation
+		designated_user_embedding = [aligned_user_embedding_by_frame[i][max_score_embeddingwise] for i in range(len(aligned_user_embedding_by_frame))]
+		designated_pro_embedding = [self._pro_embedding_by_frame[i][max_score_embeddingwise] for i in range(len(aligned_user_embedding_by_frame))]
+		power_size = self._length_diff(designated_user_embedding, designated_pro_embedding)
 
+		# self.result = np.mean(scores)
+		# print(scores.shape)
+		# print(len(embedding_names))
+		# plot
+		# plt.bar(range(1, len(embedding_names)+1), list(scores), align='center')
+		# plt.ylim((0,50))
+		# plt.show()
+
+		return max_score_embeddingwise, power_size, start, end
 		
 		# calculate errors (might want to use self._computation_scores_embeddingwise to make it easier to tell which sections of pose are more off)
 
@@ -105,16 +114,24 @@ class PoseDifferenceEstimator(object):
 		## if original embedding causes alignment error, just use flipped
 		if flip_user_start_tuple[1] >= flip_user_end_tuple[1]:
 			user_embedding_by_frame_seg = user_embedding_by_frame[user_start_tuple[1]:user_end_tuple[1]+1]
+			start = user_start_tuple[1]
+			end = user_end_tuple[1]
 		elif user_start_tuple[1] >= user_end_tuple[1]:
 			user_embedding_by_frame_seg = flip_user_embedding_by_frame[flip_user_start_tuple[1]:flip_user_end_tuple[1]+1]
+			start = flip_user_start_tuple[1]
+			end = flip_user_end_tuple[1]
 		else:
 			## if neither cause alignment error, choose embedding with least total dissimilarity on alignment frames
 			dissimilarity = user_start_tuple[0] + user_end_tuple[0]
 			flip_dissimilarity = flip_user_start_tuple[0] + flip_user_end_tuple[0]
 			if dissimilarity < flip_dissimilarity:
 				user_embedding_by_frame_seg = user_embedding_by_frame[user_start_tuple[1]:user_end_tuple[1]+1]
+				start = user_start_tuple[1]
+				end = user_end_tuple[1]
 			else:
 				user_embedding_by_frame_seg = flip_user_embedding_by_frame[flip_user_start_tuple[1]:flip_user_end_tuple[1]+1]
+				start = flip_user_start_tuple[1]
+				end = flip_user_end_tuple[1]
 
 
 
@@ -151,7 +168,7 @@ class PoseDifferenceEstimator(object):
 		# 3. User and pro have an equal amount of frames (likely still misaligned)
 
 
-		return aligned_user_embedding_by_frame
+		return aligned_user_embedding_by_frame, start, end
 
 	#pro is 39
 	#user is 42
@@ -224,6 +241,15 @@ class PoseDifferenceEstimator(object):
 			scores_by_embedding += np.mean(np.abs(frame_1 - frame_2) * self._axes_weights, axis = 1)
 		return scores_by_embedding/num_frames
 
+	def _length_diff(self, designated_embedding_1, designated_embedding_2):
+		diff = []
+
+		for frame_1, frame_2 in zip(designated_embedding_1, designated_embedding_2):
+			# power_size: pro's distance / user's distance
+			diff.append(np.linalg.norm(frame_2[:2]) / np.linalg.norm(frame_1[:2]))
+			'''not sure if [:2] correct'''
+		return diff
+
 	def _most_similar_pose(self, pose_embedding_by_frame, target_embedding):
 		min_dist = math.inf
 		min_dist_index = 0
@@ -235,6 +261,12 @@ class PoseDifferenceEstimator(object):
 				min_dist_index = i
 
 		return (min_dist, min_dist_index)
+
+
+
+
+
+
 
 
 

@@ -46,7 +46,7 @@ def main():
 
     ## Get technique id to find corresponding csv file (assume preprocessed) in database
     if 'technique_id' in request.args:
-      video_id = request.args['technique_id']
+      technique_id = request.args['technique_id']
     else:
        return "Error: No technique id field provided. Please specify a technique id."
 
@@ -56,11 +56,17 @@ def main():
     # 	print(file.name)
 
     ## Download specific video from Firebase
-    firebase_user_video_src = 'userFiles/{}/{}'.format(user_id, video_id, video_id + '.mp4')
+    #print(video_id)
+    firebase_user_video_src = 'userFiles/{}/{}/{}'.format(user_id, video_id, video_id + '.mp4')
     local_user_video_dir = os.path.join(userVideoDir, user_id, video_id)
     os.makedirs(local_user_video_dir, exist_ok=False)
     local_user_video_dest = os.path.join(local_user_video_dir, video_id + '.mp4')
-    linker.download_file(firebase_user_video_src, local_user_video_dest)
+    # print("SRC", firebase_user_video_src)
+    # print("DESTINATION", local_user_video_dest)
+    # for file in linker.get_all_files():
+    #     #print(file.name)
+    #     linker.download_file(file.name, local_user_video_dest)
+    linker.download_file(local_user_video_dest, firebase_user_video_src)
 
     ## Preprocess user data
     user_landmarks_array = generate_csv_and_anns('user', local_user_video_dest)
@@ -70,12 +76,12 @@ def main():
 
     ## Processing
     pose_embedder = FullBodyPoseEmbedder()
-    difference_estimator = PoseDifferenceEstimator(embedder, pro_data_csv_path)
-    max_numeber, power_size, start, end = difference_estimator(user_landmarks_array) #this calls our estimator object on user data, does the actual core processing for BingBong
+    difference_estimator = PoseDifferenceEstimator(pose_embedder, pro_data_csv_path)
+    max_number, power_size, start, end = difference_estimator(user_landmarks_array) #this calls our estimator object on user data, does the actual core processing for BingBong
     annimg_path = os.path.join(local_user_video_dir, 'ann_img')
     store_path = os.path.join(local_user_video_dir, 'recommendation')
     os.makedirs(store_path, exist_ok=False)
-    write_annotated_recommendation(annimg_path, store_path, local_user_video_dir, user_landmarks_array, pose_embedder)
+    write_annotated_recommendation(annimg_path, store_path, local_user_video_dir, user_landmarks_array, pose_embedder, (max_number, power_size, start, end))
     recommendation_path = os.path.join(local_user_video_dir, 'recommendation.mp4')
 
 
@@ -83,8 +89,8 @@ def main():
     ## Post processing (i.e. what do we want to send back to the user)
     # difference_estimator.scores is good for now? can just write this as a number to a text file for initial testing purposes
 
-    firebase_upload_dest = 'userFiles/{}/{}'.format(local_user_video_dir, 'recommendation.mp4') # this should eventually be a .mp4 file for user to see, more illustrative of errors
-    storage.child(firebase_upload_dest).put(recommendation_path)
+    firebase_upload_dest = 'userFiles/{}/{}/{}'.format(user_id, video_id, 'recommendation.mp4') # this should eventually be a .mp4 file for user to see, more illustrative of errors
+    linker.put_file(recommendation_path, firebase_upload_dest)
 
 
     results = [{'dest':firebase_upload_dest}] # specifies the pickup point for Flutter

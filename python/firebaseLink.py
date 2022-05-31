@@ -1,4 +1,4 @@
-import pyrebase
+import pyrebase, os
 
 ## Initialization
 
@@ -17,14 +17,16 @@ class FirebaseLink:
             "serviceAccount": "./bingbong_firebase_key.json"
         }
         firebase = pyrebase.initialize_app(config)
+        print(firebase.credentials)
         self.storage = firebase.storage()
         self.db = firebase.database()
 
     def get_all_files(self):
         return self.storage.list_files()
 
-    def put_file(localPath, firebasePath):
+    def put_file(self, localPath, firebasePath):
         self.storage.child(firebasePath).put(localPath)
 
-    def download_file(localPath, firebasePath):
-        self.storage.child(firebasePath).download(localPath)
+    def download_file(self, localPath, firebasePath):
+        self.storage.child(firebasePath).download(firebasePath, localPath)
+        #self.storage.child(firebasePath).download(localPath)

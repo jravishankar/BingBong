@@ -23,7 +23,7 @@ def generate_csv_and_anns(caller, videoDir):
         os.makedirs(imgDir, exist_ok = False)
         print(videoPath)
         print(imgDir)
-        os.system('ffmpeg -i {}.mp4 -vf fps=60 {}/out%d.png'.format(videoPath, imgDir))
+        os.system('ffmpeg -i {} -vf fps=60 {}/out%d.png'.format(videoPath, imgDir))
 
     else:
         techniqueDir = videoDir
@@ -104,7 +104,7 @@ def generate_csv_and_anns(caller, videoDir):
         return pose_landmarks_array
 
 
-def write_annotated_recommendation(annimg_path, store_path, user_video_dir, user_landmarks_array, embedder):
+def write_annotated_recommendation(annimg_path, store_path, user_video_dir, user_landmarks_array, embedder, diff_tuple):
 
     font                   = cv2.FONT_HERSHEY_SIMPLEX
     bottomLeftCornerOfText = (10,500)
@@ -112,7 +112,7 @@ def write_annotated_recommendation(annimg_path, store_path, user_video_dir, user
     fontColor              = (255,255,255)
     thickness              = 3
     lineType               = 2
-
+    pose_embedder = embedder
 
     THICKNESS = 3
     RED = (0, 0, 255)
@@ -120,7 +120,7 @@ def write_annotated_recommendation(annimg_path, store_path, user_video_dir, user
     SHIFT = 10
     RADIUS = 10
     CIRCLE_THICKNESS = -1
-    
+    max_number, power_size, start, end = diff_tuple
     for frame in range(start, end+1):
 
         landmark = user_landmarks_array[frame]

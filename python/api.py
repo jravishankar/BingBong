@@ -1,9 +1,9 @@
-import flask
+import flask, os
 from flask import request, jsonify
 from firebaseLink import FirebaseLink
 from embedder import FullBodyPoseEmbedder
 from bingbongcore import PoseDifferenceEstimator
-from videoToCsv import generate_csv_and_anns
+from videoToCsv import generate_csv_and_anns, write_annotated_recommendation
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -56,7 +56,7 @@ def main():
     # 	print(file.name)
 
     ## Download specific video from Firebase
-    firebase_user_video_src = 'userFiles/{}/{}'.format(user_id, video_id + '.mp4')
+    firebase_user_video_src = 'userFiles/{}/{}'.format(user_id, video_id, video_id + '.mp4')
     local_user_video_dir = os.path.join(userVideoDir, user_id, video_id)
     os.makedirs(local_user_video_dir, exist_ok=False)
     local_user_video_dest = os.path.join(local_user_video_dir, video_id + '.mp4')
@@ -71,15 +71,20 @@ def main():
     ## Processing
     pose_embedder = FullBodyPoseEmbedder()
     difference_estimator = PoseDifferenceEstimator(embedder, pro_data_csv_path)
-    difference_estimator(user_landmarks_array) #this calls our estimator object on user data, does the actual core processing for BingBong
+    max_numeber, power_size, start, end = difference_estimator(user_landmarks_array) #this calls our estimator object on user data, does the actual core processing for BingBong
+    annimg_path = os.path.join(local_user_video_dir, 'ann_img')
+    store_path = os.path.join(local_user_video_dir, 'recommendation')
+    os.makedirs(store_path, exist_ok=False)
+    write_annotated_recommendation(annimg_path, store_path, local_user_video_dir, user_landmarks_array, pose_embedder)
+    recommendation_path = os.path.join(local_user_video_dir, 'recommendation.mp4')
 
 
 
     ## Post processing (i.e. what do we want to send back to the user)
     # difference_estimator.scores is good for now? can just write this as a number to a text file for initial testing purposes
 
-    firebase_upload_dest = 'userFiles/{}/{}'.format(user_id, video_id + '_response.mp4') # this should eventually be a .mp4 file for user to see, more illustrative of errors
-    
+    firebase_upload_dest = 'userFiles/{}/{}'.format(local_user_video_dir, 'recommendation.mp4') # this should eventually be a .mp4 file for user to see, more illustrative of errors
+    storage.child(firebase_upload_dest).put(recommendation_path)
 
 
     results = [{'dest':firebase_upload_dest}] # specifies the pickup point for Flutter

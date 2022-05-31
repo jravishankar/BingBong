@@ -33,7 +33,7 @@ def generate_csv_and_anns(caller, videoDir):
     image_files = [os.path.join(imgDir, imageName) for imageName in natsorted(os.listdir(imgDir)) if not imageName.startswith('.')]
     embedder = FullBodyPoseEmbedder()
     annImgDir = os.path.join(techniqueDir, 'ann_img')
-    os.makedirs(annImgDir, exist_ok = True)
+    os.makedirs(annImgDir, exist_ok = False)
     BG_COLOR = (192, 192, 192) # gray
     csvPath = os.path.join(techniqueDir, technique_name + '.csv')
     pose_landmarks_array = []
@@ -63,10 +63,11 @@ def generate_csv_and_anns(caller, videoDir):
             # Draw segmentation on the image.
             # To improve segmentation around boundaries, consider applying a joint
             # bilateral filter to "results.segmentation_mask" with "image".
-            condition = np.stack((results.segmentation_mask,) * 3, axis=-1) > 0.1
-            bg_image = np.zeros(image.shape, dtype=np.uint8)
-            bg_image[:] = BG_COLOR
-            annotated_image = np.where(condition, annotated_image, bg_image)
+            #condition = np.stack((results.segmentation_mask,) * 3, axis=-1) > 0.1
+            #bg_image = np.zeros(image.shape, dtype=np.uint8)
+            #bg_image[:] = BG_COLOR
+            #annotated_image = np.where(condition, annotated_image, bg_image)
+            #annotated_image = 
             # Draw pose landmarks on the image.
             mp_drawing.draw_landmarks(
                 annotated_image,
@@ -94,13 +95,189 @@ def generate_csv_and_anns(caller, videoDir):
             assert pose_landmarks.shape == (33, 3), 'Unexpected landmarks shape: {}'.format(pose_landmarks.shape)
             pose_landmarks_array.append(pose_landmarks)
             pose_size = embedder._get_pose_size(pose_landmarks, embedder._torso_size_multiplier)
-            csv_out_writer.writerow([file] + pose_landmarks.flatten().astype(np.str).tolist() + [pose_size])
+            csv_out_writer.writerow([file] + pose_landmarks.flatten().astype(np.str).tolist())
 
 
     if caller == "user": 
         ## in main file logic, we create all the necessary data (anns, csv) for visualizations 
         ## and then return the user data for calculation processing immediately
         return pose_landmarks_array
+
+
+def write_annotated_recommendation(annimg_path, store_path, user_video_dir, user_landmarks_array, embedder):
+
+    font                   = cv2.FONT_HERSHEY_SIMPLEX
+    bottomLeftCornerOfText = (10,500)
+    fontScale              = 2
+    fontColor              = (255,255,255)
+    thickness              = 3
+    lineType               = 2
+
+
+    THICKNESS = 3
+    RED = (0, 0, 255)
+    GREEN = (0, 255, 0)
+    SHIFT = 10
+    RADIUS = 10
+    CIRCLE_THICKNESS = -1
+    
+    for frame in range(start, end+1):
+
+        landmark = user_landmarks_array[frame]
+        if power_size[frame] > 1:
+            longer = 'pro'
+        else:
+            longer = 'user'
+        if max_number == 0:
+            # 'ltr'
+            user_start_point = pose_embedder._get_average_by_names(landmark, 'left_hip', 'right_hip')
+            user_end_point = pose_embedder._get_average_by_names(landmark, 'left_shoulder', 'right_shoulder')
+        elif max_number == 1:
+            # 'l_shoulder_elbow'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_shoulder')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('left_elbow')]
+        elif max_number == 2:
+            # 'r_shoulder_elbow'
+            user_start_point = landmark[pose_embedder._landmark_names.index('right_shoulder')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_elbow')]
+        elif max_number == 3:
+            # 'l_elbow_wrist'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_elbow')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('left_wrist')]
+        elif max_number == 4:
+            # 'r_elbow_wrist'
+            user_start_point = landmark[pose_embedder._landmark_names.index('right_elbow')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_wrist')]
+        elif max_number == 5:
+            # 'l_hip_knee'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_hip')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('left_knee')]
+        elif max_number == 6:
+            # 'r_hip_knee'
+            user_start_point = landmark[pose_embedder._landmark_names.index('right_hip')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_knee')]
+        elif max_number == 7:
+            # 'l_knee_ankle'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_knee')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('left_ankle')]
+        elif max_number == 8:
+            # 'r_knee_ankle'
+            user_start_point = landmark[pose_embedder._landmark_names.index('right_knee')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_ankle')]
+        elif max_number == 9:
+            # 'l_shoulder_wrist'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_shoulder')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('left_wrist')]
+        elif max_number == 10:
+            # 'r_shoulder_wrist'
+            user_start_point = landmark[pose_embedder._landmark_names.index('right_shoulder')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_wrist')]
+        elif max_number == 11:
+            # 'l_hip_ankle'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_hip')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('left_ankle')]
+        elif max_number == 12:
+            # 'r_hip_ankle'
+            user_start_point = landmark[pose_embedder._landmark_names.index('right_hip')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_ankle')]
+        elif max_number == 13:
+            # 'l_hip_wrist'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_hip')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('left_wrist')]
+        elif max_number == 14:
+            # 'r_hip_wrist'
+            user_start_point = landmark[pose_embedder._landmark_names.index('right_hip')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_wrist')]
+        elif max_number == 15:
+            # 'l_shoulder_ankle'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_shoulder')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('left_ankle')]
+        elif max_number == 16:
+            # 'r_shoulder_ankle'
+            user_start_point = landmark[pose_embedder._landmark_names.index('right_shoulder')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_ankle')]
+        elif max_number == 17:
+            # 'l_hip_wrist'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_hip')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('left_wrist')]
+        elif max_number == 18:
+            # 'r_hip_wrist'
+            user_start_point = landmark[pose_embedder._landmark_names.index('right_hip')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_wrist')]
+        elif max_number == 19:
+            # 'ltr_elbow'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_elbow')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_elbow')]
+        elif max_number == 20:
+            # 'ltr_knee'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_knee')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_knee')]
+        elif max_number == 21:
+            # 'ltr_wrist'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_wrist')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_wrist')]
+        elif max_number == 22:
+            # 'ltr_ankle'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_ankle')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_ankle')]
+            if longer == 'pro':
+                improvement = 'Try spreading your legs a bit!'
+            else:
+                improvement = 'Try bringing in your legs a bit!'
+        elif max_number == 23:
+            # 'l_bent'
+            user_start_point = landmark[pose_embedder._landmark_names.index('left_wrist')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('left_ankle')]
+        elif max_number == 24:
+            # 'r_bent'
+            user_start_point = landmark[pose_embedder._landmark_names.index('right_wrist')]
+            user_end_point = landmark[pose_embedder._landmark_names.index('right_ankle')]
+        else:
+            print("max_number error")
+            user_start_point = user_end_point = 0
+
+        user_center = ((user_start_point[0]+user_end_point[0])/2, (user_start_point[1]+user_end_point[1])/2)
+
+        pro_start_px = (round((user_start_point[0]-user_center[0])*power_size[frame]+user_center[0]),
+                        round((user_start_point[1]-user_center[1])*power_size[frame]+user_center[1]))
+        pro_end_px = (round((user_end_point[0]-user_center[0])*power_size[frame]+user_center[0]),
+                      round((user_end_point[1]-user_center[1])*power_size[frame]+user_center[1]))
+
+        path = os.path.join(annimg_path, "out"+str(frame+1)+"_ann.png")
+        ann_image = cv2.imread(path)
+        image = ann_image.copy()
+        if image.shape[2] != 3:
+            raise ValueError('Input image must contain three channel rgb data.')
+        user_start_px = (round(user_start_point[0]),round(user_start_point[1]))
+        user_end_px = (round(user_end_point[0]),round(user_end_point[1]))
+
+        image_length, image_width, _ = image.shape
+
+        bottomLeftCornerOfText = (10, image_length - 10)
+
+        cv2.arrowedLine(image, user_end_px, pro_end_px, color=GREEN, thickness=THICKNESS)
+        cv2.arrowedLine(image, user_start_px, pro_start_px, color=GREEN, thickness=THICKNESS)
+        
+        # cv2.line(image, pro_start_px, pro_end_px, color=GREEN, thickness=THICKNESS)
+        # cv2.circle(image, pro_start_px, RADIUS, color=GREEN, thickness=CIRCLE_THICKNESS)
+        # cv2.circle(image, pro_end_px, RADIUS, color=GREEN, thickness=CIRCLE_THICKNESS)
+        cv2.circle(image, user_start_px, RADIUS, color=RED, thickness=CIRCLE_THICKNESS)
+        cv2.circle(image, user_end_px, RADIUS, color=RED, thickness=CIRCLE_THICKNESS)
+        #cv2pil(image)
+        #cv2_putText_1(image, improvement, bottomLeftCornerOfText, fontPIL, fontScale, fontColor)
+        cv2.putText(image,improvement, 
+                    bottomLeftCornerOfText, 
+                    font, 
+                    fontScale,
+                    fontColor,
+                    thickness,
+                    lineType)
+        store_name = "out" + str(frame+1) + "_recommendation.png"
+        cv2.imwrite(os.path.join(store_path, store_name), image)
+    os.system('ffmpeg -r 30 -i {}/out%d_recommendation.png {}/recommendation.mp4'.format(store_path, user_video_dir))
+
+
+
 
 
 if __name__ == "__main__":

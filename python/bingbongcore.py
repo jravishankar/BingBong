@@ -40,8 +40,8 @@ class PoseDifferenceEstimator(object):
 		with open(technique_csv_path, newline='') as csvFile:
 			csv_reader = csv.reader(csvFile, delimiter=self.file_separator)
 			for row in csv_reader:
-				assert len(row) == self._n_landmarks * self._n_dimensions + 2, 'Wrong number of values: {}'.format(len(row))
-				landmarks = np.array(row[1:-1], np.float32).reshape([self._n_landmarks , self._n_dimensions])
+				assert len(row) == self._n_landmarks * self._n_dimensions + 1, 'Wrong number of values: {}'.format(len(row))
+				landmarks = np.array(row[1:], np.float32).reshape([self._n_landmarks , self._n_dimensions])
 				embedding_by_frame.append(self._pose_embedder(landmarks))
 		return embedding_by_frame
 
